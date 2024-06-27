@@ -10,11 +10,19 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/error', (req: Request, res: Response) => {
   const a = 20
   const b = 20
-  const unused = "unused";
-  res.send('This endpoint has linting issues');
-  if (a == b) {
+  res.send("This endpoint has linting issues");
+  if (a === b) {
     console.log('This should be a strict equality check')
   }
+});
+
+app.get('/animals/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  if (id === '1') {
+    return res.send({ animal: 'cat' });
+  } 
+    return res.send({ animal: 'dog' });
+  
 });
 
 app.listen(port, () => {
